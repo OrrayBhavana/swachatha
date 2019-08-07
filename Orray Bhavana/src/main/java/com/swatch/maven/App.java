@@ -8,17 +8,22 @@ import java.io.IOException;
 import java.io.Reader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 //import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 @SuppressWarnings("unused")
 public class App 
 {
 	static Scanner b;
-	public static boolean login(String email,String pswd) throws Exception {
+	public static boolean login(String email,String pswd) throws IOException, ParseException  {
+		try {
+		if(email.endsWith("@gmail.com")==true) {
 		JSONParser parser = new JSONParser();
 		String filename="users/"+email+".json";
 		Reader reader = new FileReader(filename);
@@ -29,8 +34,16 @@ public class App
 		if(name.equals(email) && password.equals(hash(pswd))) {
 			return true;
 		}
+		else 
+			return false;
+		}
 		else
 			return false;	
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("User doesn't exists");
+			return false;
+		}
 	}
 	@SuppressWarnings("unchecked")
 	public static boolean reges(String name,String email,String phone,String pswd) {
@@ -74,7 +87,7 @@ public class App
 				System.out.print("Enter Password:");
 				String password=b.next();
 				if(login(email1,password)) {
-					System.out.println("Logged in");
+					System.out.println("\t\t\t*****Logged in*****\t\t\t");
 					wastage(email1);
 				}
 				else
@@ -97,13 +110,13 @@ public class App
 					}
 				}
 				else
-					System.out.println("\nNot Done");
+					System.out.println("\nEnter the Details correctly");
 				break;
 			}
 			System.out.print("\nEnter yes to enter again:");
 			ch=b.next();
     	}while(ch.equals("yes"));
-    	System.out.println("\n*----------------*Thank You*-----------------*\n\n\n\n\n");
+    	System.out.println("\n\t\t\t*----------------*Thank You*-----------------*\n\n\n\n\n");
     b.close();
     }
     public static String hash(String pswd) {
@@ -127,7 +140,7 @@ public class App
         return generatedPassword;
     }
     @SuppressWarnings({ "unused", "unchecked" })
-	public static void wastage(String email) throws Exception {
+	public static void wastage(String email) throws Exception   {
     	
     	JSONParser parser = new JSONParser();
 		String filename="users/"+email+".json";
@@ -156,19 +169,24 @@ public class App
     	String plastic_type,metal_type,glass_type,plastic_brand,metal_brand,glass_brand;
     	System.out.println("Entered into Wastage section\n");
     	System.out.println("***Enter only lower case***");
-    	System.out.println("Enter the quantity of the type you have (*** Enter 0 if that type not exists***)");
-    	System.out.print("Enter the number of types of plastic wastes:");
+    	System.out.println("\tEnter the quantity of the type you have (*** Enter 0 if that type not exists***)");
+    	System.out.print("\tEnter the number of types of plastic wastes:");
     	i=b.nextInt();
+    	b.nextLine();
     	count=i;
+    	System.out.println("\n");
     	if(i!=0) {
     		//obj.put("Waste Type","Plastic");
     	do {
-    	System.out.print("Enter Type of Plastic:");
+    		System.out.println("\n");
+    		
+    	System.out.print("\tEnter Type of Plastic:");
     	plastic_type=b.nextLine();
-    	b.nextLine();
-    	System.out.print("Enter Brand of Plastic:");
+    	
+    	//b.nextLine();
+    	System.out.print("\tEnter Brand of Plastic:");
     	plastic_brand=b.nextLine();
-    	System.out.print("Enter quantity of Plastic:");
+    	System.out.print("\tEnter quantity of Plastic:");
     	plastic_quant=b.nextInt();
     	b.nextLine();
     	if(plastic_brand.equals("coke")) {
@@ -202,20 +220,25 @@ public class App
     	obj=new JSONObject();
     	total+=temp;
     	i--;
+    	System.out.println("\n");
     	}while(i>0);
     	}
-    	System.out.print("Enter the number of types of Metal wastes:");
+    	System.out.println("\n");
+    	System.out.print("\tEnter the number of types of Metal wastes:");
     	i=b.nextInt();
+    	b.nextLine();
     	count=i;
     	if(i!=0) {
     	do {
-    		//obj.put("Waste Type:", "Metal");
-    	System.out.print("Enter Type of Metal:");
+    		System.out.println("\n");
+    		 	
+    	System.out.print("\tEnter Type of Metal:");
     	metal_type=b.nextLine();
-    	b.nextLine();
-    	System.out.print("Enter Brand of Metal:");
+    	
+    	//b.nextLine();
+    	System.out.print("\tEnter Brand of Metal:");
     	metal_brand=b.nextLine();
-    	System.out.print("Enter quantity of Metal:");
+    	System.out.print("\tEnter quantity of Metal:");
     	metal_quant=b.nextInt();
     	b.nextLine();
     	
@@ -249,20 +272,26 @@ public class App
     	obj=new JSONObject();
     	total+=temp;
     	i--;	
+    	System.out.println("\n");
     	}while(i>0);
     	}
-    	System.out.print("Enter the number of types of Glass wastes:");
+    	System.out.println("\n");
+    	System.out.print("\tEnter the number of types of Glass wastes:");
     	i=b.nextInt();
+    	b.nextLine();
     	count=i;
     	if(i!=0) {
     		//obj.put("Waste Type","Glass");
     	do{
-    	System.out.print("Enter Type of Glass:");
+    		System.out.println("\n");
+    	
+    	System.out.print("\tEnter Type of Glass:");
     	glass_type=b.nextLine();
-    	b.nextLine();
-    	System.out.print("Enter Brand of Glass:");
+    	
+    	//b.nextLine();
+    	System.out.print("\tEnter Brand of Glass:");
     	glass_brand=b.nextLine();
-    	System.out.print("Enter quantity of Glass:");
+    	System.out.print("\tEnter quantity of Glass:");
     	glass_quant=b.nextInt();
     	b.nextLine();
     	if(glass_brand.equals("coke")) {
@@ -293,14 +322,22 @@ public class App
     	obj.put("Coupons", temp);
     	array1.add(obj);
     	obj=new JSONObject();
+    	
     	total+=temp;
     	i--;
+    	System.out.println("\n");
     	}while(i>0);
     	}
     	i=0;
+    	DecimalFormat format = new DecimalFormat("##.00");
+    	total=Double.parseDouble(format.format(total));
+    	String randomcode=randomCode(10);
+    	obj.put("Coupon Code",randomcode);
+    	array1.add(obj);
+    	obj=new JSONObject();
     	obj.put("Total:"+total,array1);
     	
-    	String filename1="reports/"+email+"_REPORT.json";
+    	String filename1="reports/"+email+"_"+randomcode+".json";
 		try {
 			FileWriter file = new FileWriter(filename1);
 			file.write(obj.toJSONString());
@@ -309,9 +346,23 @@ public class App
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	System.out.println("Report generated successfully :)");
-    	System.out.println("	*************Congratulations*************\n\t\t\tTotal Coupons:"+total);
+		
+    	System.out.println("\n\n\t\t\t\tReport generated successfully :)");
+    	System.out.println("\t\t\t*************Congratulations*************\n\t\t\tTotal Coupons:"+total);
+    	System.out.println("\t\t\t*****Logged Out*****\t\t\t");
     	//System.out.println(obj.toString());
     	
     }
+    public static String randomCode(int codeLength){   
+        char[] chars = "abcdefghijklmnopqrstuvwxyz1234567890".toCharArray();
+           StringBuilder sb = new StringBuilder();
+           Random random = new SecureRandom();
+           for (int i = 0; i < codeLength; i++) {
+               char c = chars[random.nextInt(chars.length)];
+               sb.append(c);
+           }
+           String output = sb.toString();
+           System.out.println("\n\t\t\tCoupon code:"+output);
+           return output ;
+       }
 }
