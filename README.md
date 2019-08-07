@@ -6,7 +6,7 @@ They will be asked for the input of the wastage. For that they will be getting t
 07/08/19-The main part of the project that have been written, the main logic of wastage gathering and storing as per the requirements listed in github. Then at last i have created the json report file of individual weights and coupons. User info also available in that json file.
 Now the rondom generation of the coupon part has been done. By that unique coupons will be generated for every users report.
 The complete process is given below:
-Softwares should be installed- Java 1.8, maven
+Softwares should be installed-> Java 1.8, maven
 Execution process:
 1) Navigate into the project directory where pom.xml file exists.
 2) open powershell or cmd within the directory.
