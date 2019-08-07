@@ -69,8 +69,9 @@ public class App
 			return false;
 		}
 	}
-    public static void main( String[] args ) throws Exception
+    public static void main( String[] args ) 
     {
+    	try {
     	b=new Scanner(System.in);
     	int i;
     	String ch;
@@ -118,6 +119,10 @@ public class App
     	}while(ch.equals("yes"));
     	System.out.println("\n\t\t\t*----------------*Thank You*-----------------*\n\n\n\n\n");
     b.close();
+    	}
+    	catch(Exception e) {
+    		System.out.println("\n\t\t\t******Stopped Execution/Interruption************\n");
+    	}
     }
     public static String hash(String pswd) {
     	String passwordToHash = pswd;
