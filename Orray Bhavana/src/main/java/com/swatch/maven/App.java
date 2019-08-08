@@ -344,7 +344,7 @@ public class App
     	obj=new JSONObject();
     	
     	jsonObject.put("Coupons", String.valueOf(coupons+total));
-    	System.out.println((String) jsonObject.get("Coupons"));
+    	//System.out.println((String) jsonObject.get("Coupons"));
     	JSONObject obj1=new JSONObject();
     	obj.put("Total:"+total,array1);
     	String filename2="users/"+email+".json";
@@ -363,7 +363,7 @@ public class App
 		}
 		
     	System.out.println("\n\n\t\t\t\tReport generated successfully :)");
-    	System.out.println("\t\t\t*************Congratulations*************\n\t\t\tTotal Coupons:"+total);
+    	System.out.println("\t\t\t*************Congratulations*************\n\t\t\tTotal Coupons:"+(total+coupons));
     	System.out.println("\t\t\t*****Logged Out*****\t\t\t");
     	//System.out.println(obj.toString());
     	
