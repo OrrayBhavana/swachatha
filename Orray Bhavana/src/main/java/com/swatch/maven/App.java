@@ -53,7 +53,7 @@ public class App
 		obj.put("email",email);		
 		obj.put("pswd",hash(pswd));
 		obj.put("phone",phone);
-		obj.put("Coupuns",0);
+		obj.put("Coupons","0.0");
 		String filename="users/"+email+".json";
 		try {
 			FileWriter file = new FileWriter(filename);
@@ -121,6 +121,7 @@ public class App
     b.close();
     	}
     	catch(Exception e) {
+    		System.out.println(e);
     		System.out.println("\n\t\t\t******Stopped Execution/Interruption************\n");
     	}
     }
@@ -155,6 +156,7 @@ public class App
 		String name = (String) jsonObject.get("name");
     	String email1 = (String) jsonObject.get("email");
     	String phone = (String) jsonObject.get("phone");
+    	double coupons = Double.parseDouble(jsonObject.get("Coupons").toString());
     	double total=0.0;
     	double temp=0.0;
     	int count=0;
@@ -340,12 +342,20 @@ public class App
     	obj.put("Coupon Code",randomcode);
     	array1.add(obj);
     	obj=new JSONObject();
-    	obj.put("Total:"+total,array1);
     	
+    	jsonObject.put("Coupons", String.valueOf(coupons+total));
+    	System.out.println((String) jsonObject.get("Coupons"));
+    	JSONObject obj1=new JSONObject();
+    	obj.put("Total:"+total,array1);
+    	String filename2="users/"+email+".json";
     	String filename1="reports/"+email+"_"+randomcode+".json";
 		try {
 			FileWriter file = new FileWriter(filename1);
+			FileWriter file1=new FileWriter(filename2);
+			file1.write(jsonObject.toString());
 			file.write(obj.toJSONString());
+			file1.flush();
+			file1.close();
 			file.flush();
 			file.close();
 		} catch (IOException e) {
