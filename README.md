@@ -3,7 +3,7 @@ I am going to do this project with the help of Eclipse and Maven.
 We will be maintaining the users information and using them for future purposes and login.
 They will be asked for the input of the wastage. For that they will be getting the coupons and the coupon code for it.
 06/08/19- I have created the users login and registration using the json and password protecting techniques are also used in this. So that, all the users will be registered. They will login using their credentials, login security and the credentials protection is also provided for the security reasons.
-07/08/19-The main part of the project that have been written, the main logic of wastage gathering and storing as per the requirements listed in github. Then at last i have created the json report file of individual weights and coupons. User info also available in that json file.
+07/08/19-The main part of the project have been written, the main logic of wastage gathering and storing as per the requirements listed in github. Then at last i have created the json report file of individual weights and coupons. User info also available in that json file.
 Now the rondom generation of the coupon part has been done. By that, unique coupons will be generated for every users report.
 The complete process is given below:
 Softwares should be installed-> Java 1.8, maven
